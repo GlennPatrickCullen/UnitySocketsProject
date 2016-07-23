@@ -10,7 +10,7 @@ Use WASD to move and the mouse to shoot!
 
 #Project Details
 This project implements a multiplayer game using Winsock for C#
-It creates an Asyncronous TCP connection between the Server application and the Client Application. Network messages are serialized using Unity's inbuilt JSON serializer before being sent.
+It creates an Asyncronous TCP connection between the Server application and the Client Application. Network messages are serialized using Unity's inbuilt JSON serializer before being sent. The majority of the network code takes place inside the "Server.cs" and "Client.cs" found in the "NetworkCode" folder.
 
 Both server and client .exe can be found at the link above
 
