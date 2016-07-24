@@ -6,7 +6,7 @@ using System.Collections;
 
 public class CharacterControler : MonoBehaviour {
 	
-    public float m_SpeedScale = 12;
+    public float m_SpeedScale = 2;
     public float m_RotScale = 1;
     float m_velocity = 0;
     float m_rotation = 0;
@@ -38,8 +38,8 @@ public class CharacterControler : MonoBehaviour {
 		
         // movement input
         ParseInput ();
-        transform.Rotate(0, 0,-m_rotation);
-        transform.position += transform.up * m_velocity;
+        transform.Rotate(0, 0,-m_rotation * Time.deltaTime);
+        transform.position += transform.up * m_velocity * Time.deltaTime;
 
         //Send movement message over the network
         NetworkMessage msg = new NetworkMessage();
@@ -55,13 +55,19 @@ public class CharacterControler : MonoBehaviour {
 		}
 
         Fire();
+
+        //Quit application if escape is pressed
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
 	}
 
  
 	void ParseInput()
 	{
-        m_velocity = Input.GetAxis("Vertical") / m_SpeedScale;
-        m_rotation = Input.GetAxis("Horizontal") / m_RotScale;
+        m_velocity = Input.GetAxis("Vertical") * m_SpeedScale;
+        m_rotation = Input.GetAxis("Horizontal") * m_RotScale ;
 	}
 
     // read if the player wishes to fire a bullet

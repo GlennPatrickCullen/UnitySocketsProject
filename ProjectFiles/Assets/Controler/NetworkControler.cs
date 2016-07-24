@@ -37,7 +37,7 @@ public class NetworkControler : MonoBehaviour {
     {
         if (!m_NetworkMovement)
         {
-            transform.position += transform.up * velocity;
+            transform.position += transform.up * velocity *Time.deltaTime;
             transform.Rotate(0f, 0f, (m_RotationVelocity/m_MessageResolution)*Time.deltaTime);
         }
     }
